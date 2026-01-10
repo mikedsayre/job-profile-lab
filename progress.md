@@ -161,6 +161,11 @@
     *   **`components/TutorialPage.tsx`**: Updated title gradient, `h3` text glow, and accent text colors from blue/cyan to orange/amber.
 *   **`components/TutorialPage.tsx` - Problem/Solution Section**: Added a new section at the top of the tutorial page (`How This App Solves the Problem`) to explain the common pains of profile optimization and how the Job Profile Lab addresses them concisely and stylishly.
 
+**Logo Placeholders (2024-07-31)**
+*   **`components/layout/Header.tsx`**: Added a square logo placeholder (h-8 w-8 md:h-10 md:w-10) to the left of the app title, ensuring responsive behavior without disrupting layout on mobile/desktop transitions.
+*   **`App.tsx`**: Added a square logo placeholder (h-6 w-6) to the left of the copyright text in the footer for consistent branding.
+*   **Logo Placeholder Size Update (2024-07-31)**: Updated the `h` and `w` classes for both the header and footer logo placeholders to `h-[4em] w-[4em]` as requested, replacing the previous `h-8 w-8 md:h-10 md:w-10` and `h-6 w-6` respectively, ensuring exact `4em` sizing.
+
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
 *   Add more sophisticated validation and user feedback.

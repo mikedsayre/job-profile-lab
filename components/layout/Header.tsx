@@ -30,16 +30,24 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="fixed top-0 left-0 w-full z-50 bg-slate-900 bg-opacity-90 backdrop-blur-md border-b border-orange-800 shadow-xl py-3 px-4 md:px-6">
       <div className="flex flex-col md:flex-row items-center md:justify-between max-w-7xl mx-auto">
         {/* Logo and App Title */}
-        <div className="flex flex-col items-center md:items-start min-w-0 pr-2 mb-3 md:mb-0">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600 leading-tight text-glow text-center md:text-left">
-            {appName}
-          </h1>
-          <p className="text-sm md:text-base text-amber-300 mt-0.5 font-medium whitespace-nowrap overflow-hidden text-ellipsis text-center md:text-left">
-            {tagline}
-          </p>
-          <a href={bylineLink} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-orange-400 hover:text-orange-300 transition-colors duration-200 mt-0.5 text-center md:text-left">
-            {byline}
-          </a>
+        <div className="flex items-center min-w-0 pr-2 mb-3 md:mb-0"> {/* Added flex for logo and text alignment */}
+          <img
+            src="https://via.placeholder.com/64x64/f97316/ffffff?text=JP"
+            alt="Job Profile Lab Logo"
+            className="h-[4em] w-[4em] mr-2 flex-shrink-0"
+            aria-hidden="true"
+          />
+          <div className="flex flex-col items-center md:items-start"> {/* Kept flex-col for title/tagline stack */}
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600 leading-tight text-glow text-center md:text-left">
+              {appName}
+            </h1>
+            <p className="text-sm md:text-base text-amber-300 mt-0.5 font-medium whitespace-nowrap overflow-hidden text-ellipsis text-center md:text-left">
+              {tagline}
+            </p>
+            <a href={bylineLink} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-orange-400 hover:text-orange-300 transition-colors duration-200 mt-0.5 text-center md:text-left">
+              {byline}
+            </a>
+          </div>
         </div>
 
         {/* Navigation - Always Visible, now responsive */}

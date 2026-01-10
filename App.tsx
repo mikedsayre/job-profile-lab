@@ -112,7 +112,15 @@ function App() {
       </main>
 
       <footer className="w-full py-6 text-amber-400 text-sm text-center border-t border-orange-800 mt-auto">
-        &copy; {new Date().getFullYear()} Job Profile Lab by <a href="https://swanlakedigital.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200">Swan Lake Digital</a>. All rights reserved.
+        <div className="flex items-center justify-center">
+          <img
+            src="https://via.placeholder.com/64x64/f97316/ffffff?text=JP"
+            alt="Job Profile Lab Logo"
+            className="h-[4em] w-[4em] mr-2"
+            aria-hidden="true"
+          />
+          &copy; {new Date().getFullYear()} Job Profile Lab by <a href="https://swanlakedigital.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200 ml-1">Swan Lake Digital</a>. All rights reserved.
+        </div>
       </footer>
     </div>
   );
