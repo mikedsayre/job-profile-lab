@@ -5,8 +5,8 @@ import { LinkedInStager } from './components/LinkedInStager';
 import { Button } from './components/common/Button';
 import { Spinner } from './components/common/Spinner';
 import { Header } from './components/layout/Header';
-import { PLATFORMS } from './siteConfig';
 import { TutorialPage } from './components/TutorialPage'; // Import new TutorialPage
+import { APP_NAME, TAGLINE, BYLINE, BYLINE_LINK, FOOTER_LOGO_PLACEHOLDER_URL } from './constants'; // Import constants
 
 function App() {
   const [resumeText, setResumeText] = useState<string>('');
@@ -62,10 +62,10 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-slate-900 to-gray-950 text-slate-100 font-sans">
       <Header
-        appName="Job Profile Lab"
-        tagline="The Science of Getting Hired"
-        byline="by Swan Lake Digital"
-        bylineLink="https://swanlakedigital.com"
+        appName={APP_NAME}
+        tagline={TAGLINE}
+        byline={BYLINE}
+        bylineLink={BYLINE_LINK}
         onResetApp={handleResetApp}
         onDownloadPdf={optimizedProfile ? triggerPdfDownload : undefined}
         onToggleTutorial={toggleTutorialPage}
@@ -114,12 +114,12 @@ function App() {
       <footer className="w-full py-6 text-amber-400 text-sm text-center border-t border-orange-800 mt-auto">
         <div className="flex items-center justify-center">
           <img
-            src="https://via.placeholder.com/64x64/f97316/ffffff?text=JP"
-            alt="Job Profile Lab Logo"
+            src={FOOTER_LOGO_PLACEHOLDER_URL}
+            alt={`${APP_NAME} Logo`}
             className="h-[4em] w-[4em] mr-2"
             aria-hidden="true"
           />
-          &copy; {new Date().getFullYear()} Job Profile Lab by <a href="https://swanlakedigital.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200 ml-1">Swan Lake Digital</a>. All rights reserved.
+          &copy; {new Date().getFullYear()} {APP_NAME} by <a href={BYLINE_LINK} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200 ml-1">{BYLINE}</a>. All rights reserved.
         </div>
       </footer>
     </div>

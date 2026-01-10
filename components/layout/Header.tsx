@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../common/Button';
 import { PLATFORMS } from '../../siteConfig';
+import { APP_NAME, TAGLINE, BYLINE, BYLINE_LINK, HEADER_LOGO_PLACEHOLDER_URL } from '../../constants'; // Corrected import path
 
 interface HeaderProps {
   appName: string;
@@ -14,10 +15,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  appName,
-  tagline,
-  byline,
-  bylineLink,
   onResetApp,
   onDownloadPdf,
   onToggleTutorial,
@@ -32,20 +29,20 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Logo and App Title */}
         <div className="flex items-center min-w-0 pr-2 mb-3 md:mb-0"> {/* Added flex for logo and text alignment */}
           <img
-            src="https://via.placeholder.com/64x64/f97316/ffffff?text=JP"
-            alt="Job Profile Lab Logo"
+            src={HEADER_LOGO_PLACEHOLDER_URL}
+            alt={`${APP_NAME} Logo`}
             className="h-[4em] w-[4em] mr-2 flex-shrink-0"
             aria-hidden="true"
           />
           <div className="flex flex-col items-center md:items-start"> {/* Kept flex-col for title/tagline stack */}
             <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600 leading-tight text-glow text-center md:text-left">
-              {appName}
+              {APP_NAME}
             </h1>
             <p className="text-sm md:text-base text-amber-300 mt-0.5 font-medium whitespace-nowrap overflow-hidden text-ellipsis text-center md:text-left">
-              {tagline}
+              {TAGLINE}
             </p>
-            <a href={bylineLink} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-orange-400 hover:text-orange-300 transition-colors duration-200 mt-0.5 text-center md:text-left">
-              {byline}
+            <a href={BYLINE_LINK} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-orange-400 hover:text-orange-300 transition-colors duration-200 mt-0.5 text-center md:text-left">
+              {BYLINE}
             </a>
           </div>
         </div>

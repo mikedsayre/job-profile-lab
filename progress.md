@@ -165,6 +165,12 @@
 *   **`components/layout/Header.tsx`**: Added a square logo placeholder (h-8 w-8 md:h-10 md:w-10) to the left of the app title, ensuring responsive behavior without disrupting layout on mobile/desktop transitions.
 *   **`App.tsx`**: Added a square logo placeholder (h-6 w-6) to the left of the copyright text in the footer for consistent branding.
 *   **Logo Placeholder Size Update (2024-07-31)**: Updated the `h` and `w` classes for both the header and footer logo placeholders to `h-[4em] w-[4em]` as requested, replacing the previous `h-8 w-8 md:h-10 md:w-10` and `h-6 w-6` respectively, ensuring exact `4em` sizing.
+*   **Centralized Constants & Image URLs (2024-07-31)**:
+    *   Created `constants.ts` to house `APP_NAME`, `TAGLINE`, `BYLINE`, `BYLINE_LINK`, `HEADER_LOGO_PLACEHOLDER_URL`, and `FOOTER_LOGO_PLACEHOLDER_URL`.
+    *   Updated `App.tsx` and `components/layout/Header.tsx` to import and use these constants, replacing hardcoded strings and image `src` values.
+
+**Module Resolution Fix (2024-07-31)**:
+*   **`components/layout/Header.tsx`**: Corrected the import path for `constants.ts` from `../constants` to `../../constants` to properly resolve the module given its location at the project root.
 
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
