@@ -5,7 +5,7 @@ export const TAGLINE = "The Science of Getting Hired";
 export const BYLINE = "by Swan Lake Digital";
 export const BYLINE_LINK = "https://swanlakedigital.com";
 
-// Placeholder URLs for logos. In a real app, these would be local paths like '/images/logo.png'
-// For now, using placeholder images with a square ratio and orange branding.
-export const HEADER_LOGO_PLACEHOLDER_URL = "https://via.placeholder.com/64x64/f97316/ffffff?text=JP"; // JP for Job Profile
-export const FOOTER_LOGO_PLACEHOLDER_URL = "https://via.placeholder.com/64x64/f97316/ffffff?text=JP"; // JP for Job Profile
+// Local paths for logos. You should create a `public/images/` folder
+// in your project root and place your logo files there, e.g., `public/images/logo-header.png`.
+export const HEADER_LOGO_PLACEHOLDER_URL = "/images/logo-header.png"; // Placeholder for header logo
+export const FOOTER_LOGO_PLACEHOLDER_URL = "/images/logo-footer.png"; // Placeholder for footer logo

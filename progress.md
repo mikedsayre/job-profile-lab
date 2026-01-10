@@ -133,7 +133,7 @@
 *   **`TutorialPage.tsx`**: Updated the instruction regarding "Download PDF Plan" to "Download Plan" and clarified the nature of the Markdown file.
 *   **Date Reference Removal (2024-07-31)**:
     *   `siteConfig.ts`: Removed all instances of "2025" and replaced with evergreen terms like "modern" or "current."
-    *   `services/geminiService.ts`: Updated the Gemini API prompt to remove "2025" from buzzword references.
+    *   **`services/geminiService.ts`**: Updated the Gemini API prompt to remove "2025" from buzzword references.
 
 **Header Nav Button Wording Optimization for Mobile (2024-07-31)**
 *   **`components/layout/Header.tsx`**:
@@ -171,6 +171,10 @@
 
 **Module Resolution Fix (2024-07-31)**:
 *   **`components/layout/Header.tsx`**: Corrected the import path for `constants.ts` from `../constants` to `../../constants` to properly resolve the module given its location at the project root.
+
+**Static Asset Management (2024-07-31)**:
+*   Updated `constants.ts` to reference logo images via local paths (e.g., `/images/logo-header.png`).
+*   **User Action Required**: Create a `public/images/` directory at the project root and place your actual logo images (e.g., `logo-header.png`, `logo-footer.png`) within it. These images will be served directly by the web server.
 
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
