@@ -119,7 +119,7 @@ function App() {
             className="h-[4em] w-[4em] mr-2"
             aria-hidden="true"
           />
-          &copy; {new Date().getFullYear()} {APP_NAME} by <a href={BYLINE_LINK} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200 ml-1">{BYLINE}</a>. All rights reserved.
+          &copy; {new Date().getFullYear()} {APP_NAME} by <a href={BYLINE_LINK} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors duration-200 ml-1">{BYLINE}. All rights reserved.</a>
         </div>
       </footer>
     </div>
