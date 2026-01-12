@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from './common/Button';
 import { Card } from './common/Card';
 import { PLATFORMS } from '../siteConfig';
+import { HEADER_LOGO_PLACEHOLDER_URL, SPECS_TAGLINE, APP_NAME } from '../constants'; // Import mascot URL and tagline
 
 interface TutorialPageProps {
   onBackToApp: () => void;
@@ -13,6 +14,19 @@ export const TutorialPage: React.FC<TutorialPageProps> = ({ onBackToApp }) => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center">
       <Card className="p-6 md:p-8 w-full">
+        {/* Mascot Image and Tagline at the Top */}
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src={HEADER_LOGO_PLACEHOLDER_URL}
+            alt={`${APP_NAME} Mascot Specs`}
+            className="w-24 h-24 sm:w-32 sm:h-32 mb-3 rounded-full border-2 border-orange-500 shadow-lg shadow-amber-500/30"
+            aria-hidden="true"
+          />
+          <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-400 text-glow text-center mb-4">
+            {SPECS_TAGLINE}
+          </p>
+        </div>
+
         <div className="flex justify-between items-center mb-6 border-b border-orange-700 pb-4">
           <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 text-glow">
             App Tutorial & Guide

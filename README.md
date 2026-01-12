@@ -1,10 +1,13 @@
 <div align="center">
-  <img src="https://picsum.photos/400/200?random=1" alt="Job Profile Lab Banner" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+  <img src="/images/job-lab-mascot-specs-256px.png" alt="Job Profile Lab Mascot Specs" style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.4); margin-top: 10px;">
   <h1 style="font-size: 3.5em; font-weight: 800; background: linear-gradient(45deg, #fbbf24, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 20px; text-shadow: 0 0 8px rgba(255, 165, 0, 0.6), 0 0 16px rgba(255, 165, 0, 0.4);">
     Job Profile Lab
   </h1>
   <p style="font-size: 1.5em; font-weight: 600; color: #fbbf24; max-width: 800px; margin-top: 10px;">
     The Science of Getting Hired.
+  </p>
+  <p style="font-size: 1.2em; font-weight: 500; color: #fcd34d; max-width: 800px; margin-top: 5px;">
+    Specs: Your AI Career Co-Pilot, Scanning Resumes, Shining Careers!
   </p>
   <p style="font-size: 1.0em; color: #fcd34d; max-width: 700px; margin-top: 5px;">
     by <a href="https://swanlakedigital.com" target="_blank" rel="noopener noreferrer" style="color: #fcd34d; text-decoration: none; font-weight: bold; hover:text-amber-300 transition-colors duration-200">Swan Lake Digital</a>
@@ -131,9 +134,9 @@ For local development, the `API_KEY` will be read from your `.env` file. When de
     *   For each section, review the AI-generated content on the right.
     *   Use the character counters to ensure compliance with platform limits.
     *   Click the "COPY TO CLIPBOARD" button next to any individual field to copy its content.
-    *   Use the **"COPY ALL OPTIMIZATIONS"** button to copy all generated content at once, ready to be pasted into your favorite document editor.
+    *   Use the **"COPY ALL OPTIMIZATIONS"** button to copy all generated content at once, ready to be pasted into your preferred word processor or document editor for further customization.
 4.  **Access Tutorial**: Click the "Help" button in the perpetual header to open a dedicated page with detailed instructions and tips about the app.
-5.  **Download Plan**: Click the "Download Plan" button in the header to get a **structured Markdown (.md) file** of your optimized profile, including all guide tips. This file is excellent for offline reference and easy copy-pasting into text or word editors (you may need to copy from the browser or a text editor if your word processor doesn't render Markdown directly).
+5.  **Download Plan**: Click the "Download Plan" button in the header to get a **structured Markdown (.md) file** of your optimized profile, including all guide tips. This file is excellent for offline reference and easy copy-pasting into text or word editors (you can open .md files in any text editor, and copy-paste content into word processors where you can apply rich formatting).
 6.  **Update Your Profile**: Go to your job site profile edit page (e.g., LinkedIn) and paste the copied content (either section-by-section or all at once) into the respective fields.
 
 ---

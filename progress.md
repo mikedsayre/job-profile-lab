@@ -185,6 +185,11 @@
 *   Integrated a `<link rel="icon">` tag into `index.html` to display the favicon.
 *   **User Action Required**: Place `job-lab-mascot-specs-64px.png` and `job-lab-mascot-specs-256px.png` files in the `public/images/` directory.
 
+**Mascot Integration (2024-07-31)**:
+*   Added `SPECS_TAGLINE` to `constants.ts`.
+*   Integrated the mascot image and tagline (`job-lab-mascot-specs-256px.png`) at the top of `components/TutorialPage.tsx` with responsive styling.
+*   Replaced the generic banner image in `README.md` with the mascot image and included `SPECS_TAGLINE` below the app's main tagline, ensuring elegant visual integration.
+
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
 *   Add more sophisticated validation and user feedback.
