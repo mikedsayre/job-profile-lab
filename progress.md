@@ -130,7 +130,7 @@
     *   Renamed "LinkedIn Sections" to "Job Site Profile Sections" with clarifying verbiage below it.
 *   **`Header.tsx`**: Changed the "Download PDF Plan" button label to "Download Plan" for platform neutrality, and updated its `bg-gradient` to orange/amber.
 *   **`README.md`**: Updated to reflect the "Copy All Optimizations" button and the clarified usage of Markdown files.
-*   **`TutorialPage.tsx`**: Updated the instruction regarding "Download PDF Plan" to "Download Plan" and clarified the nature of the Markdown file.
+*   **`TutorialPage.tsx`**: Updated the instruction regarding "Download Plan" to "Download Plan" and clarified the nature of the Markdown file.
 *   **Date Reference Removal (2024-07-31)**:
     *   `siteConfig.ts`: Removed all instances of "2025" and replaced with evergreen terms like "modern" or "current."
     *   **`services/geminiService.ts`**: Updated the Gemini API prompt to remove "2025" from buzzword references.
@@ -178,6 +178,7 @@
 
 **Gemini Model Update (2024-07-31)**:
 *   Updated `services/geminiService.ts` to use `gemini-2.5-flash` model for generating optimized profile data. This model is well-suited for complex reasoning, writing, and SEO optimization tasks.
+*   **Added Retry Logic**: Implemented a retry mechanism with exponential backoff for API calls in `services/geminiService.ts` to handle transient `503` errors.
 
 **Favicon Addition (2024-07-31)**:
 *   Updated `constants.ts` to specify `job-lab-mascot-specs-64px.png` for the favicon.

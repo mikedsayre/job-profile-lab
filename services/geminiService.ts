@@ -63,90 +63,105 @@ export async function generateProfileData(resumeText: string): Promise<Optimized
   Generate the JSON object based on these instructions.
   `;
 
-  try {
-    const response: GenerateContentResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash', // Using flash model for complex reasoning, writing, and SEO optimization.
-      contents: { parts: [{ text: prompt }] },
-      config: {
-        systemInstruction: "You are an expert Executive Resume Writer and SEO Specialist. Generate JSON output.",
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            headline_options: {
-              type: Type.ARRAY,
-              items: { type: Type.STRING },
-              description: 'Array of 3 distinct, high-impact headlines (max 220 chars each).',
-            },
-            about_section: {
-              type: Type.STRING,
-              description: 'A compelling first-person narrative (max 2,600 chars). Includes a "Specialties" keyword block at the bottom.',
-            },
-            experience: {
-              type: Type.ARRAY,
-              items: {
+  const maxRetries = 3; // Number of retries after the initial attempt
+  let currentDelay = 1000; // Initial delay of 1 second
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response: GenerateContentResponse = await ai.models.generateContent({
+        model: 'gemini-2.5-flash', // Using flash model for complex reasoning, writing, and SEO optimization.
+        contents: { parts: [{ text: prompt }] },
+        config: {
+          systemInstruction: "You are an expert Executive Resume Writer and SEO Specialist. Generate JSON output.",
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              headline_options: {
+                type: Type.ARRAY,
+                items: { type: Type.STRING },
+                description: 'Array of 3 distinct, high-impact headlines (max 220 chars each).',
+              },
+              about_section: {
+                type: Type.STRING,
+                description: 'A compelling first-person narrative (max 2,600 chars). Includes a "Specialties" keyword block at the bottom.',
+              },
+              experience: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    company: { type: Type.STRING },
+                    title: { type: Type.STRING },
+                    dates: { type: Type.STRING },
+                    description: { type: Type.STRING },
+                  },
+                  required: ['company', 'title', 'dates', 'description'],
+                  propertyOrdering: ['company', 'title', 'dates', 'description'],
+                },
+                description: 'Array of jobs. Each must have: company, title, dates, and description (rewritten as bullet points with metrics, max 2,000 chars per job).',
+              },
+              skills: {
+                type: Type.ARRAY,
+                items: { type: Type.STRING },
+                description: 'Array of 50 top relevant skills.',
+              },
+              quick_guide: {
                 type: Type.OBJECT,
                 properties: {
-                  company: { type: Type.STRING },
-                  title: { type: Type.STRING },
-                  dates: { type: Type.STRING },
-                  description: { type: Type.STRING },
+                  headline: { type: Type.STRING },
+                  about: { type: Type.STRING },
+                  experience: { type: Type.STRING },
+                  skills: { type: Type.STRING },
                 },
-                required: ['company', 'title', 'dates', 'description'],
-                propertyOrdering: ['company', 'title', 'dates', 'description'],
+                required: ['headline', 'about', 'experience', 'skills'],
+                propertyOrdering: ['headline', 'about', 'experience', 'skills'],
+                description: 'A short, helpful tip for the user for each section.',
               },
-              description: 'Array of jobs. Each must have: company, title, dates, and description (rewritten as bullet points with metrics, max 2,000 chars per job).',
             },
-            skills: {
-              type: Type.ARRAY,
-              items: { type: Type.STRING },
-              description: 'Array of 50 top relevant skills.',
-            },
-            quick_guide: {
-              type: Type.OBJECT,
-              properties: {
-                headline: { type: Type.STRING },
-                about: { type: Type.STRING },
-                experience: { type: Type.STRING },
-                skills: { type: Type.STRING },
-              },
-              required: ['headline', 'about', 'experience', 'skills'],
-              propertyOrdering: ['headline', 'about', 'experience', 'skills'],
-              description: 'A short, helpful tip for the user for each section.',
-            },
+            required: ['headline_options', 'about_section', 'experience', 'skills', 'quick_guide'],
+            propertyOrdering: ['headline_options', 'about_section', 'experience', 'skills', 'quick_guide'],
           },
-          required: ['headline_options', 'about_section', 'experience', 'skills', 'quick_guide'],
-          propertyOrdering: ['headline_options', 'about_section', 'experience', 'skills', 'quick_guide'],
         },
-      },
-    });
+      });
 
-    const jsonStr = response.text?.trim();
+      const jsonStr = response.text?.trim();
 
-    if (!jsonStr) {
-      throw new Error("Gemini API returned an empty response.");
+      if (!jsonStr) {
+        throw new Error("Gemini API returned an empty response.");
+      }
+
+      const data: OptimizedProfileData = JSON.parse(jsonStr);
+
+      // Basic validation of the structure
+      if (!data.headline_options || !Array.isArray(data.headline_options) || data.headline_options.length === 0 ||
+          !data.about_section ||
+          !data.experience || !Array.isArray(data.experience) ||
+          !data.skills || !Array.isArray(data.skills) || data.skills.length === 0 ||
+          !data.quick_guide) {
+        throw new Error("Invalid or incomplete data structure received from Gemini API.");
+      }
+
+      return data; // If successful, return the data
+
+    } catch (error: any) {
+      console.error(`Error calling Gemini API (Attempt ${attempt + 1}/${maxRetries + 1}):`, error);
+
+      // Check for 5xx errors (specifically 503 from the message) for retries
+      const isServerError = error.message?.includes('503') || error.message?.includes('UNAVAILABLE');
+      if (isServerError && attempt < maxRetries) {
+        console.warn(`Retrying in ${currentDelay / 1000} seconds...`);
+        await new Promise(resolve => setTimeout(resolve, currentDelay));
+        currentDelay *= 2; // Exponential backoff
+      } else if (error instanceof SyntaxError) {
+        throw new Error(`Failed to parse AI response as JSON. Raw response: ${error.message}`);
+      } else if (error.message.includes("API_KEY")) {
+         throw new Error("Gemini API Key is invalid or not configured correctly. Please check your API_KEY environment variable.");
+      } else {
+        throw new Error(`Gemini API error: ${error.message || 'Unknown error'}`);
+      }
     }
-
-    const data: OptimizedProfileData = JSON.parse(jsonStr);
-
-    // Basic validation of the structure
-    if (!data.headline_options || !Array.isArray(data.headline_options) || data.headline_options.length === 0 ||
-        !data.about_section ||
-        !data.experience || !Array.isArray(data.experience) ||
-        !data.skills || !Array.isArray(data.skills) || data.skills.length === 0 ||
-        !data.quick_guide) {
-      throw new Error("Invalid or incomplete data structure received from Gemini API.");
-    }
-
-    return data;
-
-  } catch (error: any) {
-    console.error("Error calling Gemini API:", error);
-    if (error instanceof SyntaxError) {
-      throw new Error(`Failed to parse AI response as JSON. Raw response: ${error.message}`);
-    } else if (error.message.includes("API_KEY")) {
-       throw new Error("Gemini API Key is invalid or not configured correctly. Please check your API_KEY environment variable.");
-    }
-    throw new Error(`Gemini API error: ${error.message || 'Unknown error'}`);
   }
+  // This line should ideally not be reached if an error is always thrown after max retries
+  throw new Error("Gemini API failed after multiple retries.");
 }
