@@ -65,7 +65,7 @@ export async function generateProfileData(resumeText: string): Promise<Optimized
 
   try {
     const response: GenerateContentResponse = await ai.models.generateContent({
-      model: 'gemini-3-pro-preview', // Using pro model for complex reasoning, writing, and SEO optimization.
+      model: 'gemini-2.5-flash', // Using flash model for complex reasoning, writing, and SEO optimization.
       contents: { parts: [{ text: prompt }] },
       config: {
         systemInstruction: "You are an expert Executive Resume Writer and SEO Specialist. Generate JSON output.",

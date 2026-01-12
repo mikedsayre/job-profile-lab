@@ -176,6 +176,14 @@
 *   Updated `constants.ts` to reference logo images via local paths (e.g., `/images/logo-header.png`).
 *   **User Action Required**: Create a `public/images/` directory at the project root and place your actual logo images (e.g., `logo-header.png`, `logo-footer.png`) within it. These images will be served directly by the web server.
 
+**Gemini Model Update (2024-07-31)**:
+*   Updated `services/geminiService.ts` to use `gemini-2.5-flash` model for generating optimized profile data. This model is well-suited for complex reasoning, writing, and SEO optimization tasks.
+
+**Favicon Addition (2024-07-31)**:
+*   Added `FAVICON_URL` to `constants.ts` for clarity.
+*   Integrated a `<link rel="icon">` tag into `index.html` to display the favicon.
+*   **User Action Required**: Place a `favicon.png` file in the `public/images/` directory.
+
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
 *   Add more sophisticated validation and user feedback.
