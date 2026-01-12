@@ -180,9 +180,10 @@
 *   Updated `services/geminiService.ts` to use `gemini-2.5-flash` model for generating optimized profile data. This model is well-suited for complex reasoning, writing, and SEO optimization tasks.
 
 **Favicon Addition (2024-07-31)**:
-*   Added `FAVICON_URL` to `constants.ts` for clarity.
+*   Updated `constants.ts` to specify `job-lab-mascot-specs-64px.png` for the favicon.
+*   Updated `constants.ts` to specify `job-lab-mascot-specs-256px.png` for both header and footer logos.
 *   Integrated a `<link rel="icon">` tag into `index.html` to display the favicon.
-*   **User Action Required**: Place a `favicon.png` file in the `public/images/` directory.
+*   **User Action Required**: Place `job-lab-mascot-specs-64px.png` and `job-lab-mascot-specs-256px.png` files in the `public/images/` directory.
 
 **Next Steps:**
 *   Refine PDF download functionality (full `react-pdf` integration if a true, formatted PDF is later deemed essential *and* technically feasible without major architectural changes).
